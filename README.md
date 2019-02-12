@@ -7,4 +7,4 @@ This repository was used to facilitate collaboration and documentation for Olin 
 
 The lab experiments documented in this repository include: 
 - [Lab 1 : Resistors and Resistive Networks](https://anushadatar.github.io/olin-circuits-sp19/Lab_1_Resistive_Networks/)
-- [Lab 2 : Resistors and Diodes]((https://anushadatar.github.io/olin-circuits-sp19/Lab_2_Resistors_and_Diodes/)
+- [Lab 2 : Resistors and Diodes](https://anushadatar.github.io/olin-circuits-sp19/Lab_2_Resistors_and_Diodes/)
