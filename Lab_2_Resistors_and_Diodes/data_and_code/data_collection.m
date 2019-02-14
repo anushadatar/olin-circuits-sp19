@@ -15,27 +15,59 @@ semilogy(Vin_Exp1_2, Iout_Exp1_2, 'r');
 
 %% Experiment 2
 load('collected_data.mat');
-% theoretical
-Is = 3 * 10^(-15);
-Ut = 0.025;
+% R=100
+p100 = polyfit(Vin_Exp2_100, log(Iout_Exp2_100), 1);
+Ut100 = 1/p100(1);
+Is100 = exp(p100(2));
+
+p1K = polyfit(Vin_Exp2_1K, log(Iout_Exp2_1K), 1);
+Ut1K = 1/p1K(1);
+Is1K = exp(p1K(2));
+
+p10K = polyfit(Vin_Exp2_100, log(Iout_Exp2_100), 1);
+Ut10K = 1/p10K(1);
+Is10K = exp(p10K(2));
+
+Ion100 = Ut100/100;
+Ion1K = Ut1K/1000;
+Ion10K = Ut10K/10000;
+
+Von100 = Ut100 * log(Ion100/Is100);
+Von1K = Ut1K * log(Ion1K/Is1K);
+Von10K = Ut10K * log(Ion10K/Is10K);
+
+
 V = linspace(0, 3, length(Vin_Exp2_100));
 
-for i = 1:length(Vin_Exp2_100)
-    I(1,i) = Is * exp(V(i)/Ut) + V(i)/100;
+for i = 1:length(Von100)
+    I100(1,i) = Is100 * exp(V(i)/Ut100);
+end
+for l = (length(Von100+1 : end))
+    I100((1,i) = V(i)
 end
 
+for i = 1:length(Vin_Exp2_1K)
+    I1K(1,i) = Is1K * exp(V(i)/Ut1K) + V(i)/1000;
+end
 
+for i = 1:length(Vin_Exp2_1K)
+    I10K(1,i) = Is10K * exp(V(i)/Ut10K) + V(i)/10000;
+end
 
 figure
-plot(Vin_Exp2_100, Iout_Exp2_100, 'r');
-figure
-plot(V, I, 'b');
-% hold on
-% semilogy(Vin_Exp2_1K, Iout_Exp2_1K, 'b');
-% hold on
-% semilogy(Vin_Exp2_10K, Iout_Exp2_10K, 'b');
-% xlabel('Vin (V)');
-% ylabel('Iout (A)');
+semilogy(Vin_Exp2_100, Iout_Exp2_100, 'o');
+hold on
+semilogy(V, I100, 'b');
+hold on
+semilogy(Vin_Exp2_1K, Iout_Exp2_1K, 'o');
+hold on
+semilogy(V(1:51), I1K);
+hold on
+semilogy(Vin_Exp2_10K, Iout_Exp2_10K, 'o');
+hold on
+semilogy(V(1:51), I10K);
+xlabel('Vin (V)');
+ylabel('Iout (A)');
 title('Semilogarithmic Plot: Resistor and Transistor in Series');
 legend('R=100', 'R=100 theoretical');
 % ylim([10e-9, 10e-1]);
