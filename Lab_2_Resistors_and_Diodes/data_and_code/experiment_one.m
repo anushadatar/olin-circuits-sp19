@@ -26,12 +26,21 @@ legend('Location','northwest')
 
 hold off;
 %% 
-clear
+%clear
 
 load('collected_data.mat');
-
 incremental_resistance = diff(Vout_Exp1_1)./diff(Iin_Exp1_1);
 
+% Experimental plot.
+loglog(Iin_Exp1_1(1:end-1), incremental_resistance);
 hold on;
+
 % Theoretical plot.
-loglog(Iin_Exp1_1(1,end-1), incremental_resistance);
+loglog(Iin_Exp1_1(1:end-1), ut./(Iin_Exp1_1(1:end-1)));
+title( "Incremental Resistance of the Diode");
+ylabel("Incremental Resistance (Ohms)");
+xlabel("Input Current (Amps)");
+legend('Experimental Incremental Resistance', 'Theoretical Incremental Resistance');
+('boxoff')
+legend('Location','southwest')
+
