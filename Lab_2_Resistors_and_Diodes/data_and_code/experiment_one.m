@@ -1,3 +1,4 @@
+%% Plot 1 : Current-Voltage and Voltage-Current Plots.
 clear
 
 load('collected_data.mat');
@@ -26,13 +27,14 @@ legend('Location','northwest')
 
 hold off;
 %% 
+% Plot 2 : Incremental Resistance Plot
 %clear
 
 load('collected_data.mat');
 incremental_resistance = diff(Vout_Exp1_1)./diff(Iin_Exp1_1);
 
 % Experimental plot.
-loglog(Iin_Exp1_1(1:end-1), incremental_resistance);
+loglog(Iin_Exp1_1(1:end-1), incremental_resistance, '*g', 'MarkerSize',2);
 hold on;
 
 % Theoretical plot.
