@@ -1,29 +1,27 @@
 clear
 load('collected_data.mat');
-% R=100
+
 R100 = 100;
 R1K = 1000;
 R10K = 10000;
-p100 = polyfit(Vin_Exp2_100, log(Iout_Exp2_100), 1);
+
+% use indices 8-12 because first few points are so close to zero they're
+% basically garbage in semilog plot
+p100 = polyfit(Vin_Exp2_100(8:12), log(Iout_Exp2_100(8:12)), 1);
 Ut100 = abs(1/p100(1));
 Is100 = abs(exp(p100(2)));
 
-p1K = polyfit(Vin_Exp2_1K, log(Iout_Exp2_1K), 1);
+p1K = polyfit(Vin_Exp2_1K(8:12), log(Iout_Exp2_1K(8:12)), 1);
 Ut1K = abs(1/p1K(1));
-Is1K = abs(esp(p1K(2)));
+Is1K = abs(exp(p1K(2)));
 
-p10K = polyfit(Vin_Exp2_100, log(Iout_Exp2_100), 1);
+p10K = polyfit(Vin_Exp2_10K(8:12), log(Iout_Exp2_10K(8:12)), 1);
 Ut10K = abs(1/p10K(1));
 Is10K = abs(exp(p10K(2)));
 
-Ion100 = Ut100/100
-Ion1K = abs(Ut1K/1000);
-Ion10K = abs(exp(Ut10K/10000));
-
-Von100 = abs(Ut100 * log(Ion100/Is100));
-VonIndex100 = 41;
-Von1K = abs(Ut1K * log(Ion1K/Is1K));
-Von10K = abs(Ut10K * log(Ion10K/Is10K));
+Ion100 = Ut100/100;
+Ion1K = Ut1K/1000;
+Ion10K = Ut10K/10000;
 %% 
 % First plot : Voltage - Voltage
 % Experimental 
@@ -33,7 +31,17 @@ plot(Vin_Exp2_100, Vout_Exp2_100, '*r','MarkerSize',2);
 hold on;
 plot(Vin_Exp2_1K, Vout_Exp2_1K, '*b','MarkerSize',2);
 plot(Vin_Exp2_10K, Vout_Exp2_10K, '*g','MarkerSize',2);
+
+
+plot(Vin_Exp2_100(VonIndex100), Vout_Exp2_100(VonIndex100), 'k*', 'MarkerSize', 8);
+plot(Vin_Exp2_1K(VonIndex1K), Vout_Exp2_1K(VonIndex1K), 'k*', 'MarkerSize', 8);
+plot(Vin_Exp2_10K(VonIndex10K), Vout_Exp2_10K(VonIndex10K), 'k*', 'MarkerSize', 8);
+
 % Theoretical will be some piecewise function.
+% for i = 1:length(Vin_Exp2_100)
+%     Vout100(i) = Ut * Vin_Exp2_100(i);
+% end
+
 
 % TODO Theoretical fits for voltage-voltage plot.
 
@@ -49,32 +57,9 @@ legend('Location','southeast')
 
 
 hold off;
-%% 
-% Second plot : Current - Voltage Semilog plot
-% Experimental 
-load('collected_data.mat');
 
-semilogy(Vin_Exp2_100, Iout_Exp2_100, '*r','MarkerSize',2);
-hold on;
-semilogy(Vin_Exp2_1K, Iout_Exp2_1K, '*b','MarkerSize',2);
-semilogy(Vin_Exp2_10K, Iout_Exp2_10K, '*g','MarkerSize',2);
-% Theoretical will be some piecewise function.
-
-% TODO Theoretical fits for current-voltage plot.
-
-
-
-title( "Diode-Connected Transistor Current-Voltage Response");
-ylabel("Current Out (Amps)");
-xlabel("Voltage In (Volts)");
-
-legend('Experimental, 100 Ohms', 'Experimental, 1K Ohms','Experimental, 10K Ohms','Theoretical, 100 Ohms', 'Theoretical, 1K Ohms','Theoretical, 10K Ohms')
-legend('boxoff')
-legend('Location','southeast')
-
-
-hold off;
 %%
+%THEORETICAL PLOT WORKS
 % Third plot : Linear plot of current-voltage for 100 ohms
 
 load('collected_data.mat');
@@ -86,12 +71,13 @@ hold on;
 % This is complicated becuase our Von is experimental as well.
 
 % TODO Theoretical fits for voltage-voltage plot.
-TheoreticalIout100 = zeros(numel(Vin_Exp2_100));
-for elem = 1:numel(Vin_Exp2_100)
-    if (Vin_Exp2_100(elem) < Von100) 
-        TheoreticalIout100(elem) = Is100 .* (Vin_Exp2_100(elem)/Ut100);
-    else 
-        TheoreticalIout100(elem) = (Vin_Exp2_100(elem) - Von100)/R100;
+%Find Von from this plot's x-intercept of the linear part
+Von100 = roots(polyfit(Vin_Exp2_100(13:51), Iout_Exp2_100(13:51), 1));
+for i = 1:length(Vin_Exp2_100)
+    if (Vin_Exp2_100(i) < Von100 - 0.01) %subtract 0.01 to smooth out the theoretical fit
+        TheoreticalIout100(i) = Is100 * exp(Vin_Exp2_100(i)/Ut100);
+    else
+    TheoreticalIout100(i) = (Vin_Exp2_100(i)-Von100)/R100;
     end
 end
 plot(Vin_Exp2_100, TheoreticalIout100);
@@ -226,5 +212,30 @@ xlabel("Resistance (Ohms)");
 legend('Experimental Current On');
 legend('boxoff')
 legend('Location','northeast')
+
+hold off;
+%%
+% Second plot : Current - Voltage Semilog plot
+% Experimental 
+load('collected_data.mat');
+
+semilogy(Vin_Exp2_100, Iout_Exp2_100, '*r','MarkerSize',2);
+hold on;
+semilogy(Vin_Exp2_1K, Iout_Exp2_1K, '*b','MarkerSize',2);
+semilogy(Vin_Exp2_10K, Iout_Exp2_10K, '*g','MarkerSize',2);
+% Theoretical will be some piecewise function.
+
+% TODO Theoretical fits for current-voltage plot.
+semilogy(Vin_Exp2_100, TheoreticalIout100, '-k');
+
+
+title( "Diode-Connected Transistor Current-Voltage Response");
+ylabel("Current Out (Amps)");
+xlabel("Voltage In (Volts)");
+
+legend('Experimental, 100 Ohms', 'Experimental, 1K Ohms','Experimental, 10K Ohms','Theoretical, 100 Ohms', 'Theoretical, 1K Ohms','Theoretical, 10K Ohms')
+legend('boxoff')
+legend('Location','southeast')
+
 
 hold off;
