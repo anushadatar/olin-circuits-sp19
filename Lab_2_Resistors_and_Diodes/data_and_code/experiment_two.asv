@@ -91,7 +91,7 @@ legend('boxoff')
 legend('Location','southeast')
 
 hold off;
-
+%%
 % Fourth plot : Linear plot of current-voltage for 1K ohms
 
 plot(Vin_Exp2_1K, Iout_Exp2_1K, '*r','MarkerSize',2);
@@ -120,7 +120,7 @@ legend('boxoff')
 legend('Location','southeast')
 
 hold off;
-
+%%
 % Fifth plot : Linear plot of current-voltage for 10K ohms
 
 plot(Vin_Exp2_10K, Iout_Exp2_10K, '*r','MarkerSize',2);
@@ -222,8 +222,9 @@ semilogy(Vin_Exp2_10K, Iout_Exp2_10K, '*g','MarkerSize',2);
 % TODO Theoretical fits for current-voltage plot.
 semilogy(Vin_Exp2_100, TheoreticalIout100, '-k');
 hold on
-semilogy(Vin_Exp2_1K, TheoreticalIout1K, '-k');
-semilogy(Vin_Exp2_10K, TheoreticalIout10K, '-k');
+semilogy(Vin_Exp2_1K, TheoreticalIout10, '-k');
+semilogy(Vin_Exp2_10K, TheoreticalIout100, '-k');
+
 
 title( "Diode-Connected Transistor Current-Voltage Response");
 ylabel("Current Out (Amps)");
@@ -232,5 +233,6 @@ xlabel("Voltage In (Volts)");
 legend('Experimental, 100 Ohms', 'Experimental, 1K Ohms','Experimental, 10K Ohms','Theoretical, 100 Ohms', 'Theoretical, 1K Ohms','Theoretical, 10K Ohms')
 legend('boxoff')
 legend('Location','southeast')
+
 
 hold off;
