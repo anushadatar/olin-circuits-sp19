@@ -1,2 +1,0 @@
-clear;
-load('collected_data.mat');
