@@ -18,7 +18,8 @@ title( "Common Emitter-Amplifer Transfer Characteristics");
 ylabel("Voltage Out (Volts)");
 xlabel("Voltage In (Volts)");
 
-legend('Experimental Emitter-Follower', 'Theoretical Emitter-Follower');
+legend('Experimental Emitter-Follower', 'Theoretical Emitter-Follower', \
+       'Experimental Common Emitter-Amplifier', 'Theoretical Common Emitter Amplifier');
 legend('boxoff')
 legend('Location','southeast')
 
