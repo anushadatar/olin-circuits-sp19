@@ -10,12 +10,12 @@ Ic = (-1.*(Ie)) - Ib;
 figure('Name','Plot 1')
 
 %Experimental
-semilogy(Vin_Exp1,Iout_Base_Exp1,'*');
+semilogy(Vin_Exp1,Ib,'*');
 hold on;
 semilogy(Vin_Exp1, Ic,'*');
 % Theoretical TODO
-
-
+Ib_fit = polyfit(Vin_Exp1(31:91),Ib(31:91),1)
+polyfit(Vin_Exp1(31:91),Ic(31:91),1)
 
 %Labels
 title( "Voltage vs. Current ");
@@ -50,7 +50,7 @@ hold off;
 %% Plot 3 rb = Ut/Ib
 figure('Name','Plot 3')
 
-get_fit = polyfit(Vin_Exp1(41:91), log(Ib(45:95)), 1);
+get_fit = polyfit(Vin_Exp1(41:91), log(Ib(41:91)), 1);
 Ut = abs(1/get_fit(1));
 rb = Ut./(Ib);
 
