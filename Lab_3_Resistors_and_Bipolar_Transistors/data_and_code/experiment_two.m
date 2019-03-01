@@ -1,39 +1,69 @@
 clear
 load('collected_data.mat');
 
+%% Set Up
+
+Ie100 = Iout_Emitter_Exp2_100;
+Ie1K = Iout_Emitter_Exp2_1K;
+Ie10K = Iout_Emitter_Exp2_10K;
+
+Ib100 = Iout_Base_Exp2_100;
+Ib1K = Iout_Base_Exp2_1K;
+Ib10K = Iout_Base_Exp2_10K;
+
+Vb = Vin_Exp2_100;
+
+Ic100 = (Ie100 - Ib100);
+Ic1K = (Ie1K - Ib1K);
+Ic10K = (Ie10K - Ib10K);
+
+get_fit = polyfit(Vin_Exp1(41:91), log(Iout_Base_Exp1(41:91)), 1);
+Ut = abs(1/get_fit(1));
+Is = abs(exp(get_fit(2)));
+
+Beta100 = Ic100 ./ Ib100;
+Beta1K = Ic1K ./ Ib1K;
+Beta10K = Ic10K ./ Ib10K;
+
+for i = 1:length(Vb)
+    Ve100(i) = Vb(i) - (Ut * log((Beta100(i)*Ib100(i))/Is));
+end
+
+for j = 1:length(Vb)
+    Ve1K(j) = Vb(j) - (Ut * log ((Beta1K(j)*Ib1K(j))/Is));
+end
+
+for k = 1:length(Vb)
+    Ve10K(k) = Vb(k) - (Ut * log ((Beta10K(k)*Ib10K(k))/Is));
+end
+
 %% Semilog Plot
 
 Vb100 = Vin_Exp2_100;
 Vb1K = Vin_Exp2_1K;
 Vb10K = Vin_Exp2_10K; 
 
-Ut100 = 0.0260;
-Ut1K = 0.0287;
-Ut10K = 0.0315;
+Ut = 0.0261;
 
 Is100 = 2.462602378621604e-14;
 Is1K = 1.090644616854945e-13;
 Is10K = 8.296609842239291e-13;
-
-Ve100 = 0.1;
-Ve1K = 0.1;
-Ve10K = 0.1;
 
 % calculate Ic from Ib and Ie
 Ic100 = (Iout_Emitter_Exp2_100 - Iout_Base_Exp2_100);
 Ic1K = (Iout_Emitter_Exp2_1K - Iout_Base_Exp2_1K);
 Ic10K = (Iout_Emitter_Exp2_10K - Iout_Base_Exp2_10K);
 
-for i = 1:length(Ic100)
-    IcTheo100(i) = Is100 * exp((Vb100(i) - Ve100)/Ut100);
+for m = 1:length(Ic100)
+    IcTheo100(m) = Is * exp((Vb(m) - Ve100(m))/Ut);
 end
 
-for j = 1:length(Ic1K)
-    IcTheo1K(j) = Is1K * exp((Vb1K(i) - Ve1K)/Ut1K);
+for n = 1:length(Ic1K)
+    IcTheo1K(n) = Is * exp((Vb(n) - Ve1K(n))/Ut);
 end
 
-for k = 1:length(Ic10K)
-    IcTheo10K(k) = Is10K * exp((Vb10K(i) - Ve10K)/Ut10K);
+for p = 1:length(Ic10K)
+    IcTheo10K(p) = Is * exp((Vb(p) - Ve10K(p))/Ut);
 end
 
 figure
@@ -45,11 +75,11 @@ semilogy(Vin_Exp2_10K, Ic10K, 'b*');
 hold on
 title('Collector Current calculated from Base and Emmiter Currents');
 legend('Ic when R=100', 'Ic when R=1K', 'Ic when R=10K');
-semilogy(Vin_Exp2_100, IcTheo100);
+semilogy(Vin_Exp2_100, IcTheo100, 'r-');
 hold on
-semilogy(Vin_Exp2_1K, IcTheo1K);
+semilogy(Vin_Exp2_1K, IcTheo1K, 'g-');
 hold on
-semilogy(Vin_Exp2_10K, IcTheo10K);
+semilogy(Vin_Exp2_10K, IcTheo10K, 'b-');
 hold off
 
 %% Linear plot for each R
