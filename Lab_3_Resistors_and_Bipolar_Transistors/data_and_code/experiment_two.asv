@@ -15,9 +15,9 @@ Is100 = 2.462602378621604e-14;
 Is1K = 1.090644616854945e-13;
 Is10K = 8.296609842239291e-13;
 
-Ve100 = 0.1;
-Ve1K = 0.1;
-Ve10K = 0.1;
+Ve100 = 1;
+Ve1K = 1;
+Ve10K = 1;
 
 % calculate Ic from Ib and Ie
 Ic100 = (Iout_Emitter_Exp2_100 - Iout_Base_Exp2_100);
@@ -47,9 +47,7 @@ title('Collector Current calculated from Base and Emmiter Currents');
 legend('Ic when R=100', 'Ic when R=1K', 'Ic when R=10K');
 semilogy(Vin_Exp2_100, IcTheo100);
 hold on
-semilogy(Vin_Exp2_1K, IcTheo1K);
-hold on
-semilogy(Vin_Exp2_10K, IcTheo10K);
+semilogy(
 hold off
 
 %% Linear plot for each R
