@@ -14,8 +14,13 @@ semilogy(Vin_Exp1,Ib,'*');
 hold on;
 semilogy(Vin_Exp1, Ic,'*');
 % Theoretical TODO
-Ib_fit = polyfit(Vin_Exp1(31:91),Ib(31:91),1)
-polyfit(Vin_Exp1(31:91),Ic(31:91),1)
+Ib_fit = polyfit(Vin_Exp1(11:70),log(Ib(11:70)),1);
+Ic_fit = polyfit(Vin_Exp1(31:91),Ic(31:91),1);
+
+theo_Ib = log(Ib_fit(1)).*Vin_Exp1(11:70) + Ib_fit(2);
+theo_Ic = Ic_fit(1).*Vin_Exp1(31:91) + Ic_fit(2);
+semilogy(Vin_Exp1(11:70), theo_Ib,'k','MarkerSize',10)
+%semilogy(Vin_Exp1(31:91), theo_Ic,'k')
 
 %Labels
 title( "Voltage vs. Current ");
