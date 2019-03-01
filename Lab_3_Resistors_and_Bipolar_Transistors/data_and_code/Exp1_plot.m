@@ -41,7 +41,9 @@ Beta_Exp1 = Ic ./ Ib;
 semilogx(Ib, Beta_Exp1);
 
 %Theoretical ToDo
-
+for i = 1:length(Ic100)
+    IcTheo100(i) = Is * exp((Vb - Ve)/Ut);
+end
 %Labels
 title( "Beta ");
 xlabel("Current (Amps)");
