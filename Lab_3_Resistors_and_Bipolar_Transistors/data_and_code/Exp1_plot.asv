@@ -40,16 +40,16 @@ figure('Name','Plot 2')
 Beta_Exp1 = Ic ./ Ib;
 
 %Experimental
-semilogx(Ib, Beta_Exp1,'b*','MarkerSize',4);
+semilogx(Ib, Beta_Exp1);
 
 %Labels
-title( "Collector Current vs. Beta Ratio ");
+title( "Beta ");
 xlabel("Current (Amps)");
 ylabel("Beta Ratio");
 
 legend('Calculated Beta Ratio')
 legend('boxoff')
-legend('Location','northeast')
+legend('Location','northwest')
 
 hold off;
 %% Plot 3 rb = Ut/Ib
@@ -75,7 +75,7 @@ ylabel("Base Current (Amps)");
 
 legend('Theoretical Incremental Base Resistance','Experimental Incremental Base Resistance')
 legend('boxoff')
-legend('Location','northwest')
+legend('Location','northeast')
 
 hold off;
 %% Plot 4 gm = Ic/Ut
@@ -96,9 +96,4 @@ loglog(gm,Ic(1:end-1),'ko')
 title('Incremental Transconductance Gain (gm)')
 xlabel('Transconductance Gain (Mhos)')
 ylabel('Collector Current (Amps)')
-
-legend('Theoretical Transconductance Gain','Experimental Transconductance Gain')
-legend('boxoff')
-legend('Location','northwest')
-
 hold off;
