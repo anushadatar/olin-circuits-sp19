@@ -17,98 +17,112 @@ Ic100 = (Ie100 - Ib100);
 Ic1K = (Ie1K - Ib1K);
 Ic10K = (Ie10K - Ib10K);
 
-get_fit = polyfit(Vin_Exp1(41:91), log(Iout_Base_Exp1(41:91)), 1);
-Ut = abs(1/get_fit(1));
-Is = abs(exp(get_fit(2)));
+p100 = polyfit(Vb(31:51), log(abs(Ic100(31:51))), 1);
+Ut100 = abs(1/p100(1));
+Is100 = abs(exp(p100(2)));
 
-Beta100 = Ic100 ./ Ib100;
-Beta1K = Ic1K ./ Ib1K;
-Beta10K = Ic10K ./ Ib10K;
+p1K = polyfit(Vb(31:51), log(abs(Ic1K(31:51))), 1);
+Ut1K = abs(1/p1K(1));
+Is1K = abs(exp(p1K(2)));
+
+p10K = polyfit(Vb(31:51), log(abs(Ic10K(31:51))), 1);
+Ut10K = abs(1/p10K(1));
+Is10K = abs(exp(p10K(2)));
+
+Von100 = roots(p100);
+Von1K = roots(p1K);
+Von10K = roots(p10K);
 
 for i = 1:length(Vb)
-    Ve100(i) = Vb(i) - (Ut * log((Beta100(i)*Ib100(i))/Is));
+    if (Vb(i) < Von100)
+        IcTheo100(i) = Is100 * exp(Vb(i)/Ut100);
+    else
+    IcTheo100(i) = (Vb(i)-Von100)/100;
+    end
 end
 
 for j = 1:length(Vb)
-    Ve1K(j) = Vb(j) - (Ut * log ((Beta1K(j)*Ib1K(j))/Is));
+    if (Vb(j) < Von1K)
+        IcTheo1K(j) = Is1K * exp(Vb(j)/Ut1K);
+    else
+    IcTheo1K(j) = (Vb(j)-Von1K)/1000;
+    end
 end
 
 for k = 1:length(Vb)
-    Ve10K(k) = Vb(k) - (Ut * log ((Beta10K(k)*Ib10K(k))/Is));
+    if (Vb(k) < Von10K)
+        IcTheo100(k) = Is10K * exp(Vb(k)/Ut10K);
+    else
+    IcTheo10K(k) = (Vb(k)-Von10K)/10000;
+    end
 end
-
 %% Semilog Plot
 
-Vb100 = Vin_Exp2_100;
-Vb1K = Vin_Exp2_1K;
-Vb10K = Vin_Exp2_10K; 
-
-Ut = 0.0261;
-
-Is100 = 2.462602378621604e-14;
-Is1K = 1.090644616854945e-13;
-Is10K = 8.296609842239291e-13;
-
-% calculate Ic from Ib and Ie
-Ic100 = (Iout_Emitter_Exp2_100 - Iout_Base_Exp2_100);
-Ic1K = (Iout_Emitter_Exp2_1K - Iout_Base_Exp2_1K);
-Ic10K = (Iout_Emitter_Exp2_10K - Iout_Base_Exp2_10K);
-
-for m = 1:length(Ic100)
-    IcTheo100(m) = Is * exp((Vb(m) - Ve100(m))/Ut);
-end
-
-for n = 1:length(Ic1K)
-    IcTheo1K(n) = Is * exp((Vb(n) - Ve1K(n))/Ut);
-end
-
-for p = 1:length(Ic10K)
-    IcTheo10K(p) = Is * exp((Vb(p) - Ve10K(p))/Ut);
-end
-
 figure
-semilogy(Vin_Exp2_100, Ic100, 'r*');
+semilogy(Vb(31:501), abs(Ic100(31:501)), '*', 'color', [1,0.6,0.7], 'MarkerSize', 2.5);
 hold on
-semilogy(Vin_Exp2_1K, Ic1K, 'g*');
+semilogy(Vb(31:501), abs(Ic1K(31:501)), '*', 'color', [0.4,1,0.5], 'MarkerSize', 2.5);
 hold on
-semilogy(Vin_Exp2_10K, Ic10K, 'b*');
+semilogy(Vb(31:501), abs(Ic10K(31:501)), '*', 'color', [0.4,0.79,1], 'MarkerSize', 2.5);
 hold on
-title('Collector Current calculated from Base and Emmiter Currents');
-legend('Ic when R=100', 'Ic when R=1K', 'Ic when R=10K');
-semilogy(Vin_Exp2_100, IcTheo100, 'r-');
+title('Collector Current as a Function of Base Voltage');
+semilogy(Vin_Exp2_100(29:63), abs(IcTheo100(29:63)), 'r-', 'LineWidth', 1);
 hold on
-semilogy(Vin_Exp2_1K, IcTheo1K, 'g-');
+semilogy(Vin_Exp2_1K(29:55), abs(IcTheo1K(29:55)), 'g-', 'LineWidth', 1);
 hold on
-semilogy(Vin_Exp2_10K, IcTheo10K, 'b-');
+semilogy(Vin_Exp2_1K(29:50), abs(IcTheo1K(29:50)), 'b-', 'LineWidth', 1);
+legend('Ic when R=100', 'Ic when R=1K', 'Ic when R=10K', 'Theoretical Fit R=100', 'Theoretical Fit R=1K', 'Theoretical Fit R=10K');
+legend('location', 'southeast');
+xlabel('Base Voltage (V)');
+ylabel('Collector Current (A)');
 hold off
 
 %% Linear plot for each R
 figure
-plot(Vin_Exp2_100, Ic100, 'ro', 'MarkerSize', 0.5);
-title('Linear Ic Plot for R=100');
-xlabel('Input Voltage (V)');
+plot(Vin_Exp2_100, abs(Ic100), 'o', 'color', [1,0.6,0.7], 'MarkerSize', 2);
+hold on
+plot(Vb(82:501), IcTheo100(82:501), 'k-');
+title('Collector Current vs. Base Voltage, R=100');
+xlabel('Base Voltage (V)');
 ylabel('Collector Current (A)');
+legend('Experimental Data', 'Theoretical Fit');
+legend('location', 'southeast');
+hold off
+
 figure
-plot(Vin_Exp2_1K, Ic1K, 'go', 'MarkerSize', 0.5);
-title('Linear Ic Plot for R=1K');
-xlabel('Input Voltage (V)');
+plot(Vin_Exp2_1K, abs(Ic1K), 'o', 'color', [0.4,1,0.5], 'MarkerSize', 2);
+hold on
+plot(Vb(82:501), IcTheo1K(82:501), 'k-');
+title('Collector Current vs. Base Voltage, R=1K');
+xlabel('Base Voltage (V)');
 ylabel('Collector Current (A)');
+legend('Experimental Data', 'Theoretical Fit');
+legend('location', 'southeast');
+hold off
+
 figure
-plot(Vin_Exp2_10K, Ic10K, 'bo', 'MarkerSize', 0.5);
-title('Linear Ic Plot for R=10K');
-xlabel('Input Voltage (V)');
+plot(Vin_Exp2_10K, abs(Ic10K), 'o', 'color', [0.4,0.79,1], 'MarkerSize', 2);
+hold on
+plot(Vb(82:501), IcTheo10K(82:501), 'k-');
+title('Collector Current vs. Base Voltage, R=10K');
+xlabel('Base Voltage (V)');
 ylabel('Collector Current (A)');
+legend('Experimental Data', 'Theoretical Fit');
+legend('location', 'southeast');
+hold off
 
 %% Incremental Base Resistance, Rb
-Rb100 = diff(Vin_Exp2_100) ./ diff(Iout_Base_Exp2_100);
-Rb1K = diff(Vin_Exp2_1K) ./ diff(Iout_Base_Exp2_1K);
-Rb10K = diff(Vin_Exp2_10K) ./ diff(Iout_Base_Exp2_10K);
+
+rb100 = Ut100./abs(Ib100);
+rb1K = Ut1K./abs(Ib1K);
+rb10K = Ut10K./abs(Ib10K);
+
 figure
-loglog(Iout_Base_Exp2_100(1:end-1), Rb100);
+loglog(Ib100, rb100, '*', 'color', [1,0.6,0.7], 'MarkerSize', 3);
 hold on
-loglog(Iout_Base_Exp2_1K(1:end-1), Rb1K);
+loglog(Ib1K, rb1K, '*', 'color', [0.4,1,0.5], 'MarkerSize', 3);
 hold on
-loglog(Iout_Base_Exp2_10K(1:end-1), Rb10K);
+loglog(Ib10K, rb10K, '*', 'color', [0.4,0.79,1], 'MarkerSize', 3);
 hold off
 
 %% Emitter Degeneration, Gm
