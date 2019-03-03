@@ -75,7 +75,7 @@ ylabel("Base Current (Amps)");
 
 legend('Theoretical Incremental Base Resistance','Experimental Incremental Base Resistance')
 legend('boxoff')
-legend('Location','northeast')
+legend('Location','northwest')
 
 hold off;
 %% Plot 4 gm = Ic/Ut
@@ -99,6 +99,6 @@ ylabel('Collector Current (Amps)')
 
 legend('Theoretical Transconductance Gain','Experimental Transconductance Gain')
 legend('boxoff')
-legend('Location','northeast')
+legend('Location','northwest')
 
 hold off;

@@ -5,7 +5,6 @@ R100 = 100;
 R1K = 1000;
 R10K = 10000;
 
-% use indices 8-12 because first few points are so close to zero they're
 % basically garbage in semilog plot
 p100 = polyfit(Vin_Exp2_100(8:12), log(Iout_Exp2_100(8:12)), 1);
 Ut100 = abs(1/p100(1));
