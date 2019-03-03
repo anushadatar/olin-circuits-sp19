@@ -113,24 +113,32 @@ hold off
 
 %% Incremental Base Resistance, Rb
 
-rb100 = Ut100./abs(Ib100);
-rb1K = Ut1K./abs(Ib1K);
-rb10K = Ut10K./abs(Ib10K);
+% Theoretical
+rbTheo100 = Ut100./abs(Ib100);
+rbTheo1K = Ut1K./abs(Ib1K);
+rbTheo10K = Ut10K./abs(Ib10K);
+
+% Experimental
+rb100 = (diff(Vb(61:261)))./(diff(abs(Ib100(61:261))));
 
 figure
-loglog(Ib100, rb100, '*', 'color', [1,0.6,0.7], 'MarkerSize', 3);
+loglog(rbTheo100, Ib100, '*', 'color', [1,0.6,0.7], 'MarkerSize', 3);
 hold on
-loglog(Ib1K, rb1K, '*', 'color', [0.4,1,0.5], 'MarkerSize', 3);
+loglog(rbTheo1K, Ib1K, '*', 'color', [0.4,1,0.5], 'MarkerSize', 3);
 hold on
-loglog(Ib10K, rb10K, '*', 'color', [0.4,0.79,1], 'MarkerSize', 3);
+loglog(rbTheo10K, Ib10K, '*', 'color', [0.4,0.79,1], 'MarkerSize', 3);
+hold on
+loglog(rb100, Ib100(62:261), 'k*');
 hold off
 
 %% Emitter Degeneration, Gm
-Gm100 = diff(Ic100) ./ diff(Vin_Exp2_100);
-Gm1K = diff(Ic1K) ./ diff(Vin_Exp2_1K);
-Gm10K = diff(Ic10K) ./ diff(Vin_Exp2_10K);
+Gm100 = diff(Ic100(61:261)) ./ diff(Vb(61:261));
+Gm1K = diff(Ic1K) ./ diff(Vb);
+Gm10K = diff(Ic10K) ./ diff(Vb);
+
+GmTheo100 = Ut100./(Ib100);
 figure
-loglog(Ic100(1:end-1), Gm100, 'ro');
+loglog(Ic100(61:260), Gm100, 'ro');
 hold on
 loglog(Ic1K(1:end-1), Gm1K, 'bo');
 hold on
