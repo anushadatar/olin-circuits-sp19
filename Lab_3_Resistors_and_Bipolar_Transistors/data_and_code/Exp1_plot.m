@@ -43,9 +43,9 @@ Beta_Exp1 = Ic ./ Ib;
 semilogx(Ib, Beta_Exp1,'b*','MarkerSize',4);
 
 %Labels
-title( "Collector Current vs. Beta Ratio ");
+title( "Collector Current vs. Current Gain ");
 xlabel("Current (Amps)");
-ylabel("Beta Ratio");
+ylabel("Current Gain");
 
 legend('Calculated Beta Ratio')
 legend('boxoff')

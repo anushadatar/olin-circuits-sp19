@@ -114,11 +114,10 @@ hold off
 %% Incremental Base Resistance, Rb
 
 % Theoretical
-%(-1*Ic1K)./Ib1K).* 1000);
 %rb = ut/ib + beta(R)
-rbTheo100 = (Ut100./abs(Ib100) + ((-1.*Ic100)./Ib100).*100);
-rbTheo1K = (Ut1K./abs(Ib1K)) + (-1.*Ic1K) ./ (Ib1K.*1000)
-rbTheo10K = (Ut10K./abs(Ib10K)) + (-1.*Ic10K)./(Ib10K.*10000);
+rbTheo100 = (Ut100./abs(Ib100) + ((-1*Ic100)./Ib100).*100);
+rbTheo1K = (Ut1K./abs(Ib1K) + Beta_Exp1.* 1000);
+rbTheo10K = (Ut10K./abs(Ib10K) + Beta_Exp1.* 10000);
 
 % Experimental
 rb100 = (diff(Vb(61:261)))./(diff(abs(Ib100(61:261))));
@@ -126,10 +125,10 @@ rb100 = (diff(Vb(61:261)))./(diff(abs(Ib100(61:261))));
 figure
 loglog(Ib100,rbTheo100,  '*', 'color', [1,0.6,0.7], 'MarkerSize', 3);
 hold on
-loglog(Ib1K,rbTheo1K,  '*', 'color', [0.4,1,0.5], 'MarkerSize', 3);
-hold on
-loglog( Ib10K,rbTheo10K, '*', 'color', [0.4,0.79,1], 'MarkerSize', 3);
-hold on
+% loglog(rbTheo1K, Ib1K, '*', 'color', [0.4,1,0.5], 'MarkerSize', 3);
+% hold on
+% loglog(rbTheo10K, Ib10K, '*', 'color', [0.4,0.79,1], 'MarkerSize', 3);
+% hold on
 loglog(Ib100(62:261),rb100,'k*');
 hold off
 
