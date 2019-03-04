@@ -55,7 +55,7 @@ T_Exp4_200 = zeros(501, 1);
 % m = 2 theoretical plot.
 for i = 1:length(T_Exp4_200)
     % Difference in voltage divided by m+1 gives the inflection point.
-    if (Vin_Exp4_200(i) >= 2.30)
+    if (Vin_Exp4_200(i) >= 2.35)
         T_Exp4_200(i) = (Vin_Exp4_200(i)) - .65;
         % Slope of this line is 
     elseif (Vin_Exp4_200(i) > .65) 
@@ -71,7 +71,7 @@ T_Exp4_300 = zeros(501, 1);
 % m = 2 theoretical plot.
 for i = 1:length(T_Exp4_300)
     % Difference in voltage divided by m+1 gives the inflection point.
-    if (Vin_Exp4_300(i) >= 1.955) 
+    if (Vin_Exp4_300(i) >= 1.94) 
         T_Exp4_300(i) = (Vin_Exp4_300(i)) - .65;
     elseif (Vin_Exp4_300(i) > .65) 
         T_Exp4_300(i) = 5 + 300*(Ic100(i));
@@ -87,7 +87,7 @@ T_Exp4_400 = zeros(501, 1);
 
 for i = 1:length(T_Exp4_400)
     % Difference in voltage divided by m+1 gives the inflection point.
-    if (Vin_Exp4_400(i) >= 1.75)
+    if (Vin_Exp4_400(i) >= 1.69)
         T_Exp4_400(i) = (Vin_Exp4_400(i)) - .65;
     elseif (Vin_Exp4_400(i) > .65) 
         T_Exp4_400(i) = 5 + 400*(Ic100(i));
@@ -115,8 +115,7 @@ legend('Experimental Emitter-Follower', 'Theoretical Emitter-Follower', ...
        'Theoretical Common-Emmmitter Amplifier, 300 Ohms', ...
        'Experimental Common-Emitter Amplifer, 400 Ohms', ...
        'Theoretical Common-Emmmitter Aplifier, 400 Ohms');
-legend('boxoff');
 legend('Location','southeast');
-resizeLegend(); 
+legend('boxoff');
 
 hold off;
