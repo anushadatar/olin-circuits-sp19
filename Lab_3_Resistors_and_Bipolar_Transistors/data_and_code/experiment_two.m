@@ -88,6 +88,9 @@ ylabel('Collector Current (A)');
 legend('Experimental Data', 'Theoretical Fit');
 legend('location', 'southeast');
 hold off
+p1 = polyfit(Vb, abs(Ic100), 1);
+p2 = polyfit(Vb, abs(Ic1K), 1);
+p3 = polyfit(Vb, abs(Ic10K), 1);
 
 figure
 plot(Vin_Exp2_1K, abs(Ic1K), 'o', 'color', [0.4,1,0.5], 'MarkerSize', 2);
@@ -116,33 +119,61 @@ hold off
 % Theoretical
 %(-1*Ic1K)./Ib1K).* 1000);
 %rb = ut/ib + beta(R)
-rbTheo100 = (Ut100./abs(Ib100) + ((-1.*Ic100)./Ib100).*100);
-rbTheo1K = (Ut1K./abs(Ib1K)) + (-1.*Ic1K) ./ (Ib1K.*1000)
-rbTheo10K = (Ut10K./abs(Ib10K)) + (-1.*Ic10K)./(Ib10K.*10000);
+rbTheo100 = (Ut100./abs(Ib100(61:261)) + ((-1.*Ic100(61:261))./Ib100(61:261)).*100);
+rbTheo1K = (Ut1K./abs(Ib1K(61:501)) + ((-1.*Ic1K(61:501))./Ib1K (61:501)).*1000);
+rbTheo10K = (Ut10K./abs(Ib10K(56:501)) + ((-1.*Ic10K(56:501))./Ib10K(56:501)).*10000);
 
 % Experimental
 rb100 = (diff(Vb(61:261)))./(diff(abs(Ib100(61:261))));
+rb1K = (diff(Vb(61:501)))./(diff(abs(Ib1K(61:501))));
+rb10K = (diff(Vb(56:501)))./(diff(abs(Ib10K(56:501))));
 
 figure
-loglog(Ib100,rbTheo100,  '*', 'color', [1,0.6,0.7], 'MarkerSize', 3);
+loglog(Ib100(61:261),rbTheo100, 'k+' , 'MarkerSize', 3);
 hold on
-loglog(Ib1K,rbTheo1K,  '*', 'color', [0.4,1,0.5], 'MarkerSize', 3);
+loglog(Ib1K(61:501),rbTheo1K, 'kx', 'MarkerSize', 3);
 hold on
-loglog( Ib10K,rbTheo10K, '*', 'color', [0.4,0.79,1], 'MarkerSize', 3);
+loglog(Ib10K(56:501),rbTheo10K, 'k*', 'MarkerSize', 3);
 hold on
-loglog(Ib100(62:261),rb100,'k*');
+loglog(Ib100(62:261),rb100, 'o', 'color', [1,0.6,0.7]);
+hold on
+loglog(Ib1K(62:501),rb1K,'o', 'color', [0.4,1,0.5]);
+hold on
+loglog(Ib10K(57:501),rb10K, 'o', 'color', [0.4,0.79,1]);
+title('Incremental Base Resistance vs. Base Current');
+xlabel('Base Current (A)');
+ylabel('Incremental Base Resistance Rb (ohms)');
+legend('Experimental Rb, R=100', 'Experimental Rb, R=1K', 'Experimental Rb, R=10K', 'Theoretical Rb, R=100', 'Theoretical Rb, R=1K', 'Theoretical Rb, R=10K');
+legend('location', 'southwest');
 hold off
 
 %% Emitter Degeneration, Gm
-Gm100 = diff(Ic100(61:261)) ./ diff(Vb(61:261));
-Gm1K = diff(Ic1K) ./ diff(Vb);
-Gm10K = diff(Ic10K) ./ diff(Vb);
 
-GmTheo100 = Ut100./(Ib100);
+%Experimental
+Gm100 = diff(-1*Ic100(67:275)) ./ diff(Vb(67:275));
+Gm1K = diff(-1*Ic1K(62:500)) ./ diff(Vb(62:500));
+Gm10K = diff(-1*Ic10K(56:501)) ./ diff(Vb(56:501));
+
+%Theoretical
+GmTheo100 = (1/100) .* (1./(1 + (Ut100./(-1*Ic100(67:275)*100))));
+GmTheo1K = (1/1000) .* (1./(1 + (Ut1K./(-1*Ic1K(62:500)*1000))));
+GmTheo10K = (1/10000) .* (1./(1 + (Ut100./(-1*Ic10K(56:501)*10000))));
+
 figure
-loglog(Ic100(61:260), Gm100, 'ro');
+loglog(-1*Ic100(68:275), Gm100, 'o', 'color', [1,0.6,0.7]);
 hold on
-loglog(Ic1K(1:end-1), Gm1K, 'bo');
+loglog(-1*Ic1K(63:500), Gm1K, 'o', 'color', [0.4,1,0.5]);
 hold on
-loglog(Ic10K(1:end-1), Gm10K, 'go');
+loglog(-1*Ic10K(57:501), Gm10K, 'o', 'color', [0.4,0.79,1]);
+hold on
+loglog(-1*Ic100(67:275), GmTheo100, 'r-', 'LineWidth', 1.5);
+hold on
+loglog(-1*Ic1K(62:500), GmTheo1K, '-', 'color', [0.3,0.6,0.3], 'LineWidth', 1.5);
+hold on
+loglog(-1*Ic10K(56:501), GmTheo10K, 'b-', 'LineWidth', 1.5);
+legend('Experimental Gm, R=100', 'Experimental Gm, R=1K', 'Experimental Gm, R=10K', 'Theoretical Gm, R=100', 'Theoretical Gm, R=1K', 'Theoretical Gm, R=10K');
+legend('location', 'northwest');
+xlabel('Collector Current (A)');
+ylabel('Emitter Degeneration');
+title('Incremental Transconductance Gain vs. Collector Current');
 hold off
