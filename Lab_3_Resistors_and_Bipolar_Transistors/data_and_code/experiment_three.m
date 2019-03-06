@@ -4,7 +4,7 @@ load('collected_data.mat');
 % Voltage Transfer Characteristic.
 plot(Vin_Exp3, Vout_Exp3,  '*r','MarkerSize',2);
 hold on;
-plot(Vin_Exp3, Vin_Exp3);
+plot(Vin_Exp3, Vin_Exp3 - .28);
 
 title( "Emitter-Follower Voltage Transfer Characteristic");
 ylabel("Voltage Out (Volts)");
