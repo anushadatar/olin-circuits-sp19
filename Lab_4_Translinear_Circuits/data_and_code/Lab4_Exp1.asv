@@ -29,7 +29,6 @@ Beta_Q4 = Ic_Q4 ./ Ib_Q4;
 
 %% Plot of Base Voltage vs. Collect + Base Current
 
-clf;
 figure ('Name','Base Voltage vs. Collect + Base Current')
 
 %Experimental
@@ -65,21 +64,11 @@ xlabel("Voltage (Volts)");
 hold off;
 
 %% Plot of Base Current vs. Beta
-clf;
-figure ('Name', 'Base Current vs. Beta')
+% clf;
+% figure ('Name', 'Base Current vs. Beta')
 
-semilogy(Ib_Q1, Beta_Q1)
-hold on;
-semilogy(Ib_Q1, Beta_Q2)
-hold on;
-semilogy(Ib_Q1, Beta_Q3)
-hold on;
-semilogy(Ib_Q1, Beta_Q4)
-
-%Labels
-title( "Base Current vs Beta");
-ylabel("Current (Amps)");
-xlabel("Beta");
-
-hold off;
+(Ib_Q1, Beta_Q1)
+(Ib_Q1, Beta_Q1)
+(Ib_Q1, Beta_Q1)
+(Ib_Q1, Beta_Q1)
 
