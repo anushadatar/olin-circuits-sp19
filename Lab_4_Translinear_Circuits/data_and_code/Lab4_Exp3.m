@@ -40,8 +40,8 @@ hold off
 legend('.00025 Amps Experimental', '.000025 Amps Experimental', '.0000025 Amps Experimental', '.00025 Amps Theoretical', '.000025 Amps Theoretical', '.0000025 Amps Theoretical');
 legend('boxoff');
 legend('Location', 'southwest');
-title( "Translinear Circuit Two I_x - I_z Current Relationship");
+title( "Translinear Circuit Two I_y - I_z Current Relationship");
 ylabel("I_z (Amps)");
-xlabel("I_x (Amps)");
+xlabel("I_y (Amps)");
 
 
