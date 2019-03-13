@@ -108,11 +108,11 @@ figure ('Name', 'Base Current vs. Current Gain')
 
 semilogy(Ib_Q1, Beta_Q1,'r*')
 hold on;
-semilogy(Ib_Q1, Beta_Q2,'g+')
+semilogy(Ib_Q1, Beta_Q2,'g*')
 hold on;
-semilogy(Ib_Q1, Beta_Q3,'b*')
+semilogy(Ib_Q1, Beta_Q3,'b+')
 hold on;
-semilogy(Ib_Q1, Beta_Q4,'k+')
+semilogy(Ib_Q1, Beta_Q4,'k*')
 
 %Labels
 title( "Base Current vs Current Gain");
@@ -138,24 +138,15 @@ Ic_Q2_diff = 100 * ((Ic_Q1 + Ic_mean)./2)
 Ic_Q3_diff = 100 * ((Ic_Q1 + Ic_mean)./2);
 Ic_Q4_diff = 100 * ((Ic_Q1 + Ic_mean)./2);
 
-plot(Vin_Base_Q1_Exp1,Ic_Q1_diff,'r*','MarkerSize',5)
+plot(Vin_Base_Q1_Exp1,Ic_Q1_diff,'r--','MarkerSize',5)
 hold on;
-plot(Vin_Base_Q1_Exp1,Ic_Q2_diff,'g*','MarkerSize',5)
+plot(Vin_Base_Q1_Exp1,Ic_Q2_diff,'g*')
 hold on;
-plot(Vin_Base_Q1_Exp1,Ic_Q3_diff,'b*','MarkerSize',5)
+plot(Vin_Base_Q1_Exp1,Ic_Q3_diff,'b--')
 hold on;
-plot(Vin_Base_Q1_Exp1,Ic_Q4_diff,'m*','MarkerSize',5)
+plot(Vin_Base_Q1_Exp1,Ic_Q4_diff,'k+')
 % hold on;
-plot(Vin_Base_Q1_Exp1,100*Ic_mean,'k-','MarkerSize',7)
-
-legend('Q1 Percent Difference','Q2 Percent Difference','Q3 Percent Difference','Q4 Percent Difference');
-legend('boxoff')
-legend('Location','northwest')
-
-%Labels
-title( "Percent Difference for MAT14 Transistor Array");
-xlabel("Current(Amps)");
-ylabel("Percent Difference");
+plot(Vin_Base_Q1_Exp1,100*Ic_mean,'m--','MarkerSize',5)
 
 hold off;
 

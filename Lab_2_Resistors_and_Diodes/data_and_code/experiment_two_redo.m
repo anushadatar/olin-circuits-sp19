@@ -9,7 +9,7 @@ R10K = 10000;
 % basically garbage in semilog plot
 p100 = polyfit(Vin_Exp2_100(8:12), log(Iout_Exp2_100(8:12)), 1);
 Ut100 = abs(1/p100(1));
-Is100 = abs(exp(p100(2)));
+Is100 = abs(exp(p100(2)))
 
 p1K = polyfit(Vin_Exp2_1K(8:12), log(Iout_Exp2_1K(8:12)), 1);
 Ut1K = abs(1/p1K(1));
