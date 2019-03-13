@@ -1,0 +1,5 @@
+loglog(Iy_Exp2_R10K,IzIy_Exp2_R10K,'b--')
+hold on;
+loglog(Iy_Exp2_R10K(1:80),IzIy_Exp2_R10K(1:80),'r--')
+hold off;
+polyfit(log(Iy_Exp2_R10K(1:80),log(IzIy_Exp2_R10K(1:80)),1)
