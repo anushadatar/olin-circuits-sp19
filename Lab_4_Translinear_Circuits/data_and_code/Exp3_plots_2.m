@@ -6,14 +6,19 @@ load('collected_data_done.mat');
 for i = 1:length(Ix_Exp2_R10K)
     IzIx_Exp2_R10K_Theo(i) = exp(0.5 * log(Ix_Exp2_R10K(i) * 0.00002));
 end
+p1 = polyfit(log(Ix_Exp2_R10K(1:100)), log(abs(IzIx_Exp2_R10K(1:100))), 1)
 
 for j = 1:length(Ix_Exp2_R100K)
     IzIx_Exp2_R100K_Theo(j) = exp(0.5 * log(Ix_Exp2_R100K(j) * 0.000002));
 end
+p2 = polyfit(log(Ix_Exp2_R100K(50:150)), log(abs(IzIx_Exp2_R100K(50:150))), 1);
+
 
 for k = 1:length(Ix_Exp2_R1M)
     IzIx_Exp2_R1M_Theo(k) = exp(0.5 * log(Ix_Exp2_R1M(k) * 0.0000002));
 end
+p3 = polyfit(log(Ix_Exp2_R1M(50:100)), log(abs(IzIx_Exp2_R1M(50:100))), 1);
+
 
 figure
 loglog(Ix_Exp2_R10K, abs(IzIx_Exp2_R10K), 'r*', 'MarkerSize', 2.5);
@@ -40,14 +45,18 @@ hold off
 for m = 1:length(Iy_Exp2_R10K)
     IzIy_Exp2_R10K_Theo(m) = exp(0.5 * log(Iy_Exp2_R10K(m) * 0.00025));
 end
+p4 = polyfit(log(Iy_Exp2_R10K(1:50)), log(abs(IzIy_Exp2_R10K(1:50))), 1);
 
 for n = 1:length(Iy_Exp2_R100K)
     IzIy_Exp2_R100K_Theo(n) = exp(0.5 * log(Iy_Exp2_R100K(n) * 0.000025));
 end
+p5 = polyfit(log(Iy_Exp2_R100K(1:150)), log(abs(IzIy_Exp2_R100K(1:150))), 1);
+
 
 for w = 1:length(Iy_Exp2_R1M)
     IzIy_Exp2_R1M_Theo(w) = exp(0.5 * log(Iy_Exp2_R1M(w) * 0.0000025));
 end
+p6 = polyfit(log(Iy_Exp2_R1M(50:150)), log(abs(IzIy_Exp2_R1M(50:150))), 1);
 
 figure
 loglog(Iy_Exp2_R10K, abs(IzIy_Exp2_R10K), 'r*', 'MarkerSize', 2.5);
