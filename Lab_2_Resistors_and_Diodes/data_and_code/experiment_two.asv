@@ -157,11 +157,11 @@ TVon10K = Ut10K*log(Ion10K/Is10K);
 figure
 loglog(R100, Von100, '*r', 'MarkerSize', 10);
 hold on;
-loglog(R100, abs(TVon100), '*g', 'MarkerSize', 10);
+loglog(R100, abs(TVon100) + .05, '*g', 'MarkerSize', 10);
 loglog(R1K, abs(Von1K), '*r', 'MarkerSize', 10);
-loglog(R1K, abs(TVon1K), '*g', 'MarkerSize', 10);
+loglog(R1K, abs(TVon1K) + .05, '*g', 'MarkerSize', 10);
 loglog(R10K, abs(Von10K), '*r', 'MarkerSize', 10);
-loglog(R10K, abs(TVon10K), '*g', 'MarkerSize', 10);
+loglog(R10K, abs(TVon10K) + .05, '*g', 'MarkerSize', 10);
 
 title( "Voltage On as a Function of Resistance");
 legend('Experimental', 'Theoretical');
@@ -179,9 +179,9 @@ hold off;
 
 % Experimental
 % Plot each indivdual points because I'm not about to play God.
-TIon100 = abs(Ut100/R100)/10;
-TIon1K = abs(Ut1K/R1K)/10;
-TIon10K = abs(Ut10K/R10K)/10;
+TIon100 = Ut100/R100;
+TIon1K = Ut1K/R1K;
+TIon10K = Ut10K/R10K;
 loglog(R100, abs(Ion100), '*r', 'MarkerSize', 10);
 hold on;
 loglog(R100, abs(Ut100/R100), '*g', 'MarkerSize', 10);
@@ -195,7 +195,7 @@ title( "Current On as a Function of Resistance");
 ylabel("Current On (Amps)");
 xlabel("Resistance (Ohms)");
 
-legend('Experimental Current On', 'Theoretical Current On');
+legend('Experimental Current On');
 legend('boxoff')
 legend('Location','northeast')
 
