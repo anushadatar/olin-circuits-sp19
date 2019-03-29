@@ -18,6 +18,8 @@ Ic_Q2 = -1*(Ie_Q2-Ib_Q2);
 
 Beta_Q2 = Ic_Q2 ./ Ib_Q2;
 avg_Beta_Q2 = mean(Beta_Q2);
+
+%%
 % Q3
 Ib_Q3 = (Ib_Q3_Exp1);
 Ie_Q3 = (Ie_Q3_Exp1);
@@ -97,7 +99,7 @@ title( "MAT14 Transistor Array Current-Voltage Characteristics");
 ylabel("Current (Amps)");
 xlabel("Base Voltage (Volts)");
 
-legend('Experimental Q1 Emitter',' Experimental Q2 Emitter','Experimental Q3 Emitter','Experimental Q4 Emitter', 'Experimental Q1 Base', 'Experimental Q2 Base', 'Experimental Q3 Base', 'Experimental Q4 Base', 'Theoretical Q1 Emitter',' Theoretical Q2 Emitter','Theoretical Q3 Emitter','Theoretical Q4 Emitter', 'Theoretical Q1 Base', 'Theoretical Q2 Base', 'Theoretical Q3 Base', 'Theoretical Q4 Base');
+legend('Experimental Q1 Collector',' Experimental Q2 Collector','Experimental Q3 Collector','Experimental Q4 Collector', 'Experimental Q1 Base', 'Experimental Q2 Base', 'Experimental Q3 Base', 'Experimental Q4 Base', 'Theoretical Q1 Collector',' Theoretical Q2 Collector','Theoretical Q3 Collector','Theoretical Q4 Collector', 'Theoretical Q1 Base', 'Theoretical Q2 Base', 'Theoretical Q3 Base', 'Theoretical Q4 Base');
 legend('boxoff')
 legend('Location','southeast')
 
@@ -106,17 +108,17 @@ hold off;
 %% Plot of Base Current vs. Beta
 figure ('Name', 'Base Current vs. Current Gain')
 
-semilogy(Ib_Q1, Beta_Q1,'r*')
+semilogx(Ib_Q1, Beta_Q1,'r*')
 hold on;
-semilogy(Ib_Q1, Beta_Q2,'g+')
+semilogx(Ib_Q1, Beta_Q2,'g+')
 hold on;
-semilogy(Ib_Q1, Beta_Q3,'b*')
+semilogx(Ib_Q1, Beta_Q3,'b*')
 hold on;
-semilogy(Ib_Q1, Beta_Q4,'k+')
+semilogx(Ib_Q1, Beta_Q4,'k+')
 
 %Labels
 title( "Base Current vs Current Gain");
-xlabel("Current (Amps)");
+xlabel("Base Current (Amps)");
 ylabel("Current Gain");
 
 legend('Q1 Beta','Q2 Beta','Q3 Beta','Q4 Beta');
@@ -125,18 +127,19 @@ legend('Location','southeast')
 
 %Axis
 xlim([0 6*10^-5])
+ylim([-3000 2700])
 
 hold off;
 
 %% Percent Differnce Collector Currents
-figure ('Name', 'Percent Difference')
+figure ('Name', 'Percent Difference');
 
 Ic_mean = (Ic_Q1 + Ic_Q2 + Ic_Q3 + Ic_Q4)./4;
 
-Ic_Q1_diff = 100 * ((Ic_Q1 + Ic_mean)./2);
-Ic_Q2_diff = 100 * ((Ic_Q1 + Ic_mean)./2)
-Ic_Q3_diff = 100 * ((Ic_Q1 + Ic_mean)./2);
-Ic_Q4_diff = 100 * ((Ic_Q1 + Ic_mean)./2);
+Ic_Q1_diff = 100 * (abs(Ic_Q1 - Ic_mean)./((Ic_Q1 + Ic_mean)./2));
+Ic_Q2_diff = 100 * (abs(Ic_Q2 - Ic_mean)./((Ic_Q2 + Ic_mean)./2))
+Ic_Q3_diff = 100 * (abs(Ic_Q3 - Ic_mean)./((Ic_Q3 + Ic_mean)./2));
+Ic_Q4_diff = 100 * (abs(Ic_Q4 - Ic_mean)./((Ic_Q4 + Ic_mean)./2));
 
 plot(Vin_Base_Q1_Exp1,Ic_Q1_diff,'r*','MarkerSize',5)
 hold on;
@@ -146,16 +149,18 @@ plot(Vin_Base_Q1_Exp1,Ic_Q3_diff,'b*','MarkerSize',5)
 hold on;
 plot(Vin_Base_Q1_Exp1,Ic_Q4_diff,'m*','MarkerSize',5)
 % hold on;
-plot(Vin_Base_Q1_Exp1,100*Ic_mean,'k-','MarkerSize',7)
 
 legend('Q1 Percent Difference','Q2 Percent Difference','Q3 Percent Difference','Q4 Percent Difference');
 legend('boxoff')
-legend('Location','northwest')
+legend('Location','northeast')
 
 %Labels
 title( "Percent Difference for MAT14 Transistor Array");
-xlabel("Current(Amps)");
+xlabel("Voltage (Volts)");
 ylabel("Percent Difference");
+
+xlim([.3 .8])
+ylim([0 16])
 
 hold off;
 
