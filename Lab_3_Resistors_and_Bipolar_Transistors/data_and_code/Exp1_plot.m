@@ -40,7 +40,9 @@ figure('Name','Plot 2')
 Beta_Exp1 = Ic ./ Ib;
 
 %Experimental
-semilogx(Ib, Beta_Exp1,'b*','MarkerSize',4);
+semilogx(Ib(2:101), Beta_Exp1(2:101),'b*','MarkerSize',4);
+ylim([0,300]);
+xlim([10^(-9), 10^(-3.5)]);
 
 %Labels
 title( "Collector Current vs. Current Gain ");
@@ -48,7 +50,6 @@ xlabel("Current (Amps)");
 ylabel("Current Gain");
 
 legend('Calculated Beta Ratio')
-legend('boxoff')
 legend('Location','northeast')
 
 hold off;
@@ -57,21 +58,22 @@ figure('Name','Plot 3')
 
 get_fit = polyfit(Vin_Exp1(41:91), log(Ib(41:91)), 1);
 Ut = abs(1/get_fit(1));
+Is = abs(exp(get_fit(2)));
 rb_theo = Ut./(Ib);
 
 %Theoretical
 
-loglog(rb_theo,Ib,'b*');
+loglog(Ib,rb_theo,'b*');
 hold on;
 
 %Experimental
 rb = diff(Vin_Exp1(41:91))./diff(Ib(41:91));
 
-loglog(rb,Ib(42:91),'ko','MarkerSize',4);
+loglog(Ib(42:91),rb, 'ko','MarkerSize',4);
 
 title( "Incremental Base Resistance (rb)");
-xlabel("Incremental Base Resistance (Ohms");
-ylabel("Base Current (Amps)");
+xlabel("Base Current (Amps)");
+ylabel("Incremental Base Resistance (Ohms)");
 
 legend('Theoretical Incremental Base Resistance','Experimental Incremental Base Resistance')
 legend('boxoff')
@@ -84,18 +86,18 @@ figure('Name','Plot 4')
 gm_theo = Ic./Ut;
 
 %Theo
-loglog(gm_theo,Ic,'b*')
+loglog(Ic, gm_theo,'b*')
 hold on
 
 %Experimental
 gm = diff(Ic)./diff(Vin_Exp1)
 
-loglog(gm,Ic(1:end-1),'ko')
+loglog(Ic(1:end-1),gm,'ko')
 
 
 title('Incremental Transconductance Gain (gm)')
-xlabel('Transconductance Gain (Mhos)')
-ylabel('Collector Current (Amps)')
+xlabel('Collector Current (Amps)')
+ylabel('Transconductance Gain (Mhos)')
 
 legend('Theoretical Transconductance Gain','Experimental Transconductance Gain')
 legend('boxoff')
