@@ -1,7 +1,9 @@
-clear
 load('collected_data.mat');
 
 %% Set Up
+
+exp1Ic = Ic;
+exp1IcTheo = Ic_theo;
 
 Ie100 = Iout_Emitter_Exp2_100;
 Ie1K = Iout_Emitter_Exp2_1K;
@@ -71,7 +73,11 @@ hold on
 semilogy(Vin_Exp2_1K(29:55), abs(IcTheo1K(29:55)), 'g-', 'LineWidth', 1);
 hold on
 semilogy(Vin_Exp2_1K(29:50), abs(IcTheo1K(29:50)), 'b-', 'LineWidth', 1);
-legend('Ic when R=100', 'Ic when R=1K', 'Ic when R=10K', 'Theoretical Fit R=100', 'Theoretical Fit R=1K', 'Theoretical Fit R=10K');
+hold on
+semilogy(Vin_Exp1, exp1Ic,'y*','MarkerSize',5);
+hold on
+semilogy(Vin_Exp1(23:87), exp(Ic_theo),'k*');
+legend('Ic when R=100', 'Ic when R=1K', 'Ic when R=10K', 'Theoretical Fit R=100', 'Theoretical Fit R=1K', 'Theoretical Fit R=10K', 'Experimental Ic from Experiment 1', 'Theoretical Ic from Experiment 1');
 legend('location', 'southeast');
 xlabel('Base Voltage (V)');
 ylabel('Collector Current (A)');
