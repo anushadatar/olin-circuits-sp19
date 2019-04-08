@@ -9,6 +9,8 @@ Vd_pMOS_0 = Exp3_Vd_peeMOS_0;
 Vd_pMOS_4_2 = Exp3_Vd_peeMOS_4_2;
 Vd_pMOS_4_3 = Exp3_Vd_peeMOS_4_3;
 
+Ut = 0.0258;
+
 %% Semilog plots of drain characteristics
 
 figure
@@ -23,7 +25,7 @@ legend('Gate voltage = 4.3V', 'Gate voltage = 4.2V', 'Gate voltage = 0V');
 xlabel('Drain voltage (V)');
 ylabel('Drain current (A)');
 
-%% Extract Early Voltage
+%% Semilogx plot Early Voltage as function of saturation current
 % find ro, and then use formula in packet to calculate early voltage VA
 % from ro
 
@@ -54,8 +56,8 @@ title('Early Voltage as a function of Saturation Current');
 xlabel('Saturation Current (A)');
 ylabel('Early Voltage (V)');
 
-%% Extract Saturation Current
-
-%% Extract Intrinsic Gain (gs ro)
 
 %% Loglog Plot Intrinsic Gain (gs ro) as a function of Saturation Current
+
+
+
