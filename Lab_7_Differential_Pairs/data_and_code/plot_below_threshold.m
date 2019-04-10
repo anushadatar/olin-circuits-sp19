@@ -23,7 +23,7 @@ legend('Location','southeast')
 %Labels
 title('Differential Pair Currents, V_b at Threshold');
 xlabel("Current Output (Amps)");
-ylabel("V_{DM}");
+ylabel("V_{DM} (Volts)");
 
 hold off;
 
@@ -36,13 +36,4 @@ hold on;
 plot(Vdm, V_node_below_4V);
 plot(Vdm, V_node_below_5V);
 
-legend('V2 = 3V', 'V2 = 4V', 'V2 = 5V');
-legend('boxoff')
-legend('Location','southeast')
 
-%Labels
-title('Differential Pair Common Source Node Voltages, V_b at Threshold');
-xlabel("Common Source Node Voltage (Volts)");
-ylabel("V_{DM} (Volts)");
-
-hold off;
