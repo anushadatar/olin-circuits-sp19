@@ -55,12 +55,12 @@ elseif strcmp(plotting, 'on')==1
     title('Weak-Inversion Fit');
     pause;
 end
-% if min(abs(Isat(WIfirst:WIlast)))>1e-6
-%     error('Identified a candidate weak-inversion region, but all current levels exceed typical weak-inversion currents.');
-% end
-% if max(abs(Isat(WIfirst:WIlast)))>1e-6
-%     warning('Identified a candidate weak-inversion region, but some current levels exceed typical weak-inversion currents.');
-% end
+if min(abs(Isat(WIfirst:WIlast)))>1e-6
+    error('Identified a candidate weak-inversion region, but all current levels exceed typical weak-inversion currents.');
+end
+if max(abs(Isat(WIfirst:WIlast)))>1e-6
+    warning('Identified a candidate weak-inversion region, but some current levels exceed typical weak-inversion currents.');
+end
 
 [SIfirst, SIlast, SIm, SIb, SIN]=linefit(Vg, sqrt(Isat), epsilon);
 if SIN==0
@@ -75,21 +75,21 @@ elseif strcmp(plotting, 'on')==1
     title('Strong-Inversion Fit');
     pause;
 end
-% if max(abs(Isat(SIfirst:SIlast)))<0.1e-6
-%     error('Identified a candidate strong-inversion region, but all current levels are lower than typical strong-inversion currents.');
-% end
-% if min(abs(Isat(SIfirst:SIlast)))<0.1e-6
-%     warning('Identified a candidate strong-inversion region, but some current levels are lower than typical strong-inversion currents.');
-% end
+if max(abs(Isat(SIfirst:SIlast)))<0.1e-6
+    error('Identified a candidate strong-inversion region, but all current levels are lower than typical strong-inversion currents.');
+end
+if min(abs(Isat(SIfirst:SIlast)))<0.1e-6
+    warning('Identified a candidate strong-inversion region, but some current levels are lower than typical strong-inversion currents.');
+end
 
 if SIfirst>WIlast
     first = WIfirst;
     last = SIlast;
-% elseif WIfirst>SIlast
-else
+elseif WIfirst>SIlast
     first = SIfirst;
     last = WIlast;
-%     error('Weak-inversion and strong-inversion regions found were not disjoint.');
+else
+    error('Weak-inversion and strong-inversion regions found were not disjoint.');
 end
 
 VT=-SIb/SIm;
