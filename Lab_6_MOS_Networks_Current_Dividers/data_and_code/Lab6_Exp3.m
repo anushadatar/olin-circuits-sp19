@@ -43,11 +43,12 @@ figure;
 plot(sIn,sOut,'bo','MarkerSize',3)
 hold on
 plot(sIn,sOut_theo,'r-','MarkerSize',2)
+plot(sIn,sOut)
 
 %Legend
-legend('Experimental','Theoretical');
-legend('boxoff')
-legend('Location','northeast')
+% legend();
+% legend('boxoff')
+% legend('Location','northeast')
 
 %Labels
 title('MOS Current Divider in Series');
