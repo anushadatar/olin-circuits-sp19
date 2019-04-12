@@ -42,6 +42,10 @@ ylabel('Common-Source Node Voltage (V)');
 legend('V_2 = 3V', 'V_2 = 4V', 'V_2 = 5V');
 hold off
 
+bob1 = polyfit(Vdm(110:200), V_node_below_3V(110:200), 1)
+bill1 = polyfit(Vdm(10:100), V_node_below_3V(10:100), 1)
+bob2 = polyfit(Vdm(100:200), V_node_below_4V(100:200), 1);
+bob3 = polyfit(Vdm(100:200), V_node_below_5V(100:200), 1);
 %% Gdm
 % from -0.05 to 0.05 Vdm --> 90 to 111
 
