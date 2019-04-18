@@ -1,0 +1,11 @@
+load ('Wed_data.mat')
+
+Vdm1 = Exp2_Vdm1
+
+Iout2 = Exp2_Iout2
+Iout3 = Exp2_Iout2
+%% Part 1
+
+%% Part 2
+
+%% Part 3
