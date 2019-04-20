@@ -80,7 +80,7 @@ ylim([-12*10^(-7), 12*10^(-7)]);
 title('Incremental Diff.-Mode Transconductance Gain');
 xlabel('V_{dm} (V)');
 ylabel('Current I_1 - I_2 (A)');
-legend('V_2 = 3V', 'V_2 = 4V', 'V_2 = 5V', 'G_{dm} = 7.782e-6', 'G_{dm} = 7.794e-6', 'G_{dm} = 8.48e-6');
+legend('V_2 = 3V', 'V_2 = 4V', 'V_2 = 5V', 'G_{dm} = 7.782e-6 Mhos', 'G_{dm} = 7.794e-6 Mhos', 'G_{dm} = 8.48e-6 Mhos');
 legend('location', 'southeast');
 
 
