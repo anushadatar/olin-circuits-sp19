@@ -11,4 +11,6 @@ The lab experiments documented in this repository include:
 - [Lab 3 : Resistors and Bipolar Transistors](https://anushadatar.github.io/olin-circuits-sp19/Lab_3_Resistors_and_Bipolar_Transistors/)
 - [Lab 4 : Translinear Circuits](https://anushadatar.github.io/olin-circuits-sp19/Lab_4_Translinear_Circuits/)
 - [Lab 5 : MOS Transistor Characteristics](https://anushadatar.github.io/olin-circuits-sp19/Lab_5_MOS_Transistor_Characteristics/)
-- [Lab 6 : Series/Parallel MOS Networks and MOS Current Dividers](https://github.com/anushadatar/olin-circuits-sp19/tree/master/Lab_6_MOS_Networks_Current_Dividers)
+- [Lab 6 : Series/Parallel MOS Networks and MOS Current Dividers](https://anushadatar.github.io/olin-circuits-sp19/Lab_6_MOS_Networks_Current_Dividers)
+- [Lab 7 : Differential Pairs](https://anushadatar.github.io/olin-circuits-sp19/Lab_7_Differential_Pairs)
+- [Lab 8 : MOS Differential Amplifier](https://anushadatar.github.io/olin-circuits-sp19/Lab_8_MOS_Differential_Amplifier)
