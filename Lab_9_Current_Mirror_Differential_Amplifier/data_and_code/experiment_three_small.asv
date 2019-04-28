@@ -1,0 +1,9 @@
+load("exp3small.mat");
+plot(Times, Channel1V);
+hold on;
+plot(Times, Channel2V);
+up_behavior = polyfit(log(Times(10:39)), log(Channel1V(10:39) - Channel2V(10:39)), 1);
+up_tau = - real(1 / ((up_behavior(1)))*1000)
+
+down_behavior = polyfit(log(Times(40:75)), log(Channel2V(40:75)), 1);
+down_tau = 1/(real(down_behavior(1)) * 1000)

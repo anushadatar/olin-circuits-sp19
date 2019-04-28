@@ -1,4 +1,5 @@
 %%
+load("lab9_data_Exp1_Exp2.mat");
 plot(Exp1_V1_2V, Exp1_Vout_2V, "*");
 hold on;
 plot(Exp1_V1_3V, Exp1_Vout_3V, "*");
