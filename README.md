@@ -14,3 +14,4 @@ The lab experiments documented in this repository include:
 - [Lab 6 : Series/Parallel MOS Networks and MOS Current Dividers](https://anushadatar.github.io/olin-circuits-sp19/Lab_6_MOS_Networks_Current_Dividers)
 - [Lab 7 : Differential Pairs](https://anushadatar.github.io/olin-circuits-sp19/Lab_7_Differential_Pairs)
 - [Lab 8 : MOS Differential Amplifier](https://anushadatar.github.io/olin-circuits-sp19/Lab_8_MOS_Differential_Amplifier)
+- [Lab 9 : Current Mirror Differential Amplifier](https://anushadatar.github.io/olin-circuits-sp19/Lab_9_Current_Mirror_Differential_Amplifier)
