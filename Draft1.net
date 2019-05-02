@@ -1,0 +1,31 @@
+* C:\Users\adatar\Documents\GitHub\olin-circuits-sp19\Final_Project_CMOS_Adder\Draft1.asc
+V1 N001 P001 5
+V2 N003 P002 5
+XU1 N002 gnd
+XU3 P002 gnd
+XU4 P001 gnd
+XX2 N001 N003 N002 and-gate
+
+* block symbol definitions
+.subckt and-gate A B Output
+XU1 N001 A P001 nmos3
+XU2 P001 B P002 nmos3
+XU3 N001 B P003 pmos3
+XU4 N001 A P004 pmos3
+XU5 C N001 P005 pmos3
+XU6 C N001 P006 nmos3
+XU7 P002 gnd
+XU8 P006 gnd
+V1 P007 P008 5
+XU9 P007 vdd
+XU10 P008 gnd
+XU11 P004 vdd
+XU12 P003 vdd
+XU13 P005 vdd
+.include engr2420.sub
+.ends and-gate
+
+.tran 20us
+.include engr2420.sub
+.backanno
+.end
