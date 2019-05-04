@@ -1,0 +1,24 @@
+Version 4
+SymbolType CELL
+LINE Normal 32 -128 32 -80
+LINE Normal 96 0 48 0
+LINE Normal -32 -128 -32 -80
+LINE Normal -97 0 -48 0
+LINE Normal 0 128 0 80
+RECTANGLE Normal -48 80 48 -80
+TEXT 4 -58 VRight 2 1bit-Adder
+PIN 32 -128 NONE 8
+PINATTR PinName B1
+PINATTR SpiceOrder 1
+PIN -32 -128 NONE 8
+PINATTR PinName A1
+PINATTR SpiceOrder 2
+PIN 96 0 NONE 8
+PINATTR PinName Cin
+PINATTR SpiceOrder 3
+PIN -96 0 NONE 8
+PINATTR PinName Cout
+PINATTR SpiceOrder 5
+PIN 0 128 NONE 8
+PINATTR PinName S
+PINATTR SpiceOrder 4

@@ -1,20 +1,40 @@
-* C:\Users\afry\Documents\Semesters\Spring 2019\Circuits\olin-circuits-sp19\Final_Project_CMOS_Adder\1bit-Adder.asc
+* C:\Users\afry\Documents\Semesters\Spring 2019\Circuits\olin-circuits-sp19\Final_Project_CMOS_Adder\4bit-Adder.asc
+Vdd P001 P002 5
+V你0 A0 P003 5
+V伯0 B0 P004 5
+V低0 C0 P005 0
+XU1 P002 gnd
+XU2 P003 gnd
+XU3 P004 gnd
+XU4 P005 gnd
+XU5 P001 vdd
+XX1 B0 A0 C0 S0 C1 1bit-adder
+XX2 B1 A1 C1 S1 C2 1bit-adder
+XX3 B2 A2 C2 S2 C3 1bit-adder
+XX4 B3 A3 C3 S3 Cout 1bit-adder
+V你1 A1 P006 5
+V伯1 B1 P007 5
+XU6 P006 gnd
+XU7 P007 gnd
+V你2 A2 P008 5
+V伯2 B2 P009 5
+XU9 P008 gnd
+XU10 P009 gnd
+V你3 A3 P010 5
+V伯3 B3 P011 5
+XU12 P010 gnd
+XU13 P011 gnd
+
+* block symbol definitions
+.subckt 1bit-adder B1 A1 Cin S Cout
 XX1 N001 A1 B1 xor
 XX2 S N001 Cin xor
 XX3 Cin N001 N002 and-gate
 XX4 B1 A1 N003 and-gate
 XX5 N002 N003 Cout orgate
-V你1 A1 P001 5
-V伯1 B1 P002 5
-V低in Cin P003 0
-XU1 P001 gnd
-XU2 P002 gnd
-XU3 P003 gnd
-Vdd P004 P005 5
-XU4 P005 gnd
-XU5 P004 vdd
+.include engr2420.sub
+.ends 1bit-adder
 
-* block symbol definitions
 .subckt xor Outx Ax Bx
 XU2 N002 Ax N001 pmos3
 XU3 N002 Ax P001 nmos3
@@ -55,7 +75,7 @@ XU8 N004 gnd
 .include engr2420.sub
 .ends orgate
 
-.include engr2420.sub
 .tran 20u
+.include engr2420.sub
 .backanno
 .end
