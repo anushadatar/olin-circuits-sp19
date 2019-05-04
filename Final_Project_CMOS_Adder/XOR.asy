@@ -1,0 +1,16 @@
+Version 4
+SymbolType CELL
+LINE Normal 128 0 80 0
+LINE Normal -80 -16 -32 -16
+LINE Normal -80 16 -32 16
+RECTANGLE Normal 80 48 -32 -48
+TEXT 2 0 Left 2 XOR
+PIN 128 0 NONE 8
+PINATTR PinName Outx
+PINATTR SpiceOrder 1
+PIN -80 -16 NONE 8
+PINATTR PinName Ax
+PINATTR SpiceOrder 2
+PIN -80 16 NONE 8
+PINATTR PinName Bx
+PINATTR SpiceOrder 3

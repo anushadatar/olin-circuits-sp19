@@ -1,0 +1,28 @@
+* C:\Users\afry\Documents\Semesters\Spring 2019\Circuits\olin-circuits-sp19\Final_Project_CMOS_Adder\XOR_Symbol_test.asc
+XX1 Out P001 P002 xor
+V2 P002 P003 3
+XU2 P003 gnd
+XU1 P004 gnd
+V1 P001 P004 0
+
+* block symbol definitions
+.subckt xor Outx Ax Bx
+XU2 N002 Ax N001 pmos3
+XU3 N002 Ax P001 nmos3
+XU4 P001 gnd
+XU5 Outx Ax Bx pmos3
+XU6 Outx Bx Ax pmos3
+XU7 Outx N002 Bx nmos3
+XU8 Outx Bx N002 nmos3
+R1 P002 N001 1000
+XU1 P002 vdd
+Vdd P003 P004 5
+XU11 P003 vdd
+XU14 P004 gnd
+.include engr2420.sub
+.ends xor
+
+.tran 20u
+.include engr2420.sub
+.backanno
+.end

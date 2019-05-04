@@ -1,0 +1,71 @@
+Circuit: * C:\Users\afry\Documents\Semesters\Spring 2019\Circuits\olin-circuits-sp19\Final_Project_CMOS_Adder\XOR_Symbol_test.asc
+
+Direct Newton iteration for .op point succeeded.
+Ignoring empty pin current: Ix(u2:drain)
+Ignoring empty pin current: Ix(u2:gate)
+Ignoring empty pin current: Ix(u2:source)
+Ignoring empty pin current: Ix(u3:drain)
+Ignoring empty pin current: Ix(u3:gate)
+Ignoring empty pin current: Ix(u3:source)
+Ignoring empty pin current: Ix(u4:gnd)
+Ignoring empty pin current: Ix(u5:drain)
+Ignoring empty pin current: Ix(u5:gate)
+Ignoring empty pin current: Ix(u5:source)
+Ignoring empty pin current: Ix(u6:drain)
+Ignoring empty pin current: Ix(u6:gate)
+Ignoring empty pin current: Ix(u6:source)
+Ignoring empty pin current: Ix(u7:drain)
+Ignoring empty pin current: Ix(u7:gate)
+Ignoring empty pin current: Ix(u7:source)
+Ignoring empty pin current: Ix(u8:drain)
+Ignoring empty pin current: Ix(u8:gate)
+Ignoring empty pin current: Ix(u8:source)
+Ignoring empty pin current: Ix(u1:vdd)
+Ignoring empty pin current: Ix(u11:vdd)
+Ignoring empty pin current: Ix(u14:gnd)
+Ignoring empty pin current: Ix(x1:outx)
+Ignoring empty pin current: Ix(x1:ax)
+Ignoring empty pin current: Ix(x1:bx)
+Ignoring empty pin current: Ix(u2:drain)
+Ignoring empty pin current: Ix(u2:gate)
+Ignoring empty pin current: Ix(u2:source)
+Ignoring empty pin current: Ix(u3:drain)
+Ignoring empty pin current: Ix(u3:gate)
+Ignoring empty pin current: Ix(u3:source)
+Ignoring empty pin current: Ix(u4:gnd)
+Ignoring empty pin current: Ix(u5:drain)
+Ignoring empty pin current: Ix(u5:gate)
+Ignoring empty pin current: Ix(u5:source)
+Ignoring empty pin current: Ix(u6:drain)
+Ignoring empty pin current: Ix(u6:gate)
+Ignoring empty pin current: Ix(u6:source)
+Ignoring empty pin current: Ix(u7:drain)
+Ignoring empty pin current: Ix(u7:gate)
+Ignoring empty pin current: Ix(u7:source)
+Ignoring empty pin current: Ix(u8:drain)
+Ignoring empty pin current: Ix(u8:gate)
+Ignoring empty pin current: Ix(u8:source)
+Ignoring empty pin current: Ix(u1:vdd)
+Ignoring empty pin current: Ix(u11:vdd)
+Ignoring empty pin current: Ix(u14:gnd)
+Ignoring empty pin current: Ix(x1:outx)
+Ignoring empty pin current: Ix(x1:ax)
+Ignoring empty pin current: Ix(x1:bx)
+
+Date: Thu May 02 17:28:58 2019
+Total elapsed time: 0.068 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2090
+traniter = 2082
+tranpoints = 1042
+accept = 1042
+rejected = 0
+matrix size = 21
+fillins = 0
+solver = Normal
+Matrix Compiler1: 680 bytes object code size  0.2/0.1/[0.1]
+Matrix Compiler2: 1.61 KB object code size  0.2/0.2/[0.1]
+
