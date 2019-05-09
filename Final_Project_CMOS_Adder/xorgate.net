@@ -1,0 +1,20 @@
+* C:\Users\vscheyer\Documents\Classes_4th_Semester\Circuits\olin-circuits-sp19\Final_Project_CMOS_Adder\xorgate.asc
+XU2 N002 Ax N001 pmos3
+XU3 N002 Ax P001 nmos3
+XU4 P001 gnd
+XU5 Outx Ax Bx pmos3
+XU6 Outx Bx Ax pmos3
+XU7 Outx N002 Bx nmos3
+XU8 Outx Bx N002 nmos3
+XU1 N001 vdd
+Vdd P002 P003 5
+V§Ax Ax P004 PULSE(0 5 20m 0 0 20m)
+V§Bx Bx P005 PULSE(0 5 10m 0 0 20m)
+XU9 P002 vdd
+XU10 P003 gnd
+XU11 P004 gnd
+XU12 P005 gnd
+.tran 40m
+.include engr2420.sub
+.backanno
+.end
