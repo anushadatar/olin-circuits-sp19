@@ -1,1 +1,1 @@
-For our final project, we decided to simulate a 4-bit CMOS adder in LTSpice.
+For our final project, we decided to simulate a 4-bit CMOS adder in LTSpice. Check out the [LTSpice files](https://github.com/anushadatar/olin-circuits-sp19/tree/master/Final_Project_CMOS_Adder/LTSpice) for schematics, and our [report](https://anushadatar.github.io/olin-circuits-sp19/Final_Project_CMOS_Adder/docs/Final_Project_Report.pdf) for more details.
